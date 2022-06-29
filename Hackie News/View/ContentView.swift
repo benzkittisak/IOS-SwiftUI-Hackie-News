@@ -18,7 +18,7 @@ struct ContentView: View {
                 NavigationLink(destination: DetailView(url: post.url)) {
                     HStack{
                         Text(String(post.points))
-                        Text(post.title)
+                        Text(post.title).lineLimit(1)
                     }
                 }
             }
