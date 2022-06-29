@@ -10,19 +10,23 @@ import SwiftUI
 struct ContentView: View {
     
     @ObservedObject var networkManager = NetworkManager()
+    @State var isLoading = false
     
     var body: some View {
+        
         NavigationView {
+
             //            ลูปข้อมูลจาก struct post ออกมาทีละอันจาก posts มาเก็บไว้ในตัวแปร post แล้วก็เอาออกไปแสดงผลผ่าน Text
             List(networkManager.posts) { post in
                 NavigationLink(destination: DetailView(url: post.url)) {
+                    
                     HStack{
                         Text(String(post.points))
                         Text(post.title).lineLimit(1)
                     }
                 }
             }
-            .navigationTitle("Hackie News")
+            .navigationTitle("Hackie News"
         }
         //        เมื่อมันโหลดหน้าเสร็จก็ให้มันไปเรียกใช้ fetchData มาก่อน
         .onAppear {
