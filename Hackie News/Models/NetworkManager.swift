@@ -29,6 +29,21 @@ class NetworkManager :ObservableObject {
         }
     }
     
+    func fetchData(search:String){
+        if let url = URL(string: "https://hn.algolia.com/api/v1/search?query=\(search)&tags=story") {
+            let session = URLSession(configuration: .default)
+            let task = session.dataTask(with: url) { data, response, error in
+                if let err = error {
+                    self.handle(.failure(err))
+                    return
+                }
+                self.handle(.success(data!))
+            }
+            task.resume()
+        }
+    }
+    
+    
     func handle (_ result:Result<Data,Error>) {
         switch result {
         case let .success(data):
