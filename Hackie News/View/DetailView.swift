@@ -7,12 +7,14 @@
 
 import SwiftUI
 
+
+
 struct DetailView: View {
     
     let url:String?
     
     var body: some View {
-        Text(url!)
+        WebView(urlString: url)
     }
 }
 

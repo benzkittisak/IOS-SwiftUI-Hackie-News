@@ -13,16 +13,18 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-//            ลูปข้อมูลจาก struct post ออกมาทีละอันจาก posts มาเก็บไว้ในตัวแปร post แล้วก็เอาออกไปแสดงผลผ่าน Text
+            //            ลูปข้อมูลจาก struct post ออกมาทีละอันจาก posts มาเก็บไว้ในตัวแปร post แล้วก็เอาออกไปแสดงผลผ่าน Text
             List(networkManager.posts) { post in
-                HStack{
-                    Text(String(post.points))
-                    Text(post.title)
+                NavigationLink(destination: DetailView(url: post.url)) {
+                    HStack{
+                        Text(String(post.points))
+                        Text(post.title)
+                    }
                 }
             }
             .navigationTitle("Hackie News")
         }
-//        เมื่อมันโหลดหน้าเสร็จก็ให้มันไปเรียกใช้ fetchData มาก่อน
+        //        เมื่อมันโหลดหน้าเสร็จก็ให้มันไปเรียกใช้ fetchData มาก่อน
         .onAppear {
             self.networkManager.fetchData()
         }
