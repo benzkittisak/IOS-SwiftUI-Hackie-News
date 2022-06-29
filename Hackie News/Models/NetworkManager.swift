@@ -35,7 +35,9 @@ class NetworkManager :ObservableObject {
             let decoder = JSONDecoder()
             do {
                 let result = try decoder.decode(Results.self, from: data)
-                posts = result.hits
+                DispatchQueue.main.async {
+                    self.posts = result.hits
+                }
             } catch let error {
                 print("Fetch Data error \(error)")
             }

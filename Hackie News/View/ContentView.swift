@@ -15,7 +15,10 @@ struct ContentView: View {
         NavigationView {
 //            ลูปข้อมูลจาก struct post ออกมาทีละอันจาก posts มาเก็บไว้ในตัวแปร post แล้วก็เอาออกไปแสดงผลผ่าน Text
             List(networkManager.posts) { post in
-                Text(post.title)
+                HStack{
+                    Text(String(post.points))
+                    Text(post.title)
+                }
             }
             .navigationTitle("Hackie News")
         }
